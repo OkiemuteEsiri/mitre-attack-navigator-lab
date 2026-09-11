@@ -1,0 +1,69 @@
+[
+  {
+    "technique_id": "T1078",
+    "name": "Valid Accounts",
+    "tactic": "Defense Evasion / Persistence / Privilege Escalation / Initial Access",
+    "status": "covered",
+    "severity": "critical",
+    "data_sources": ["Identity Provider", "Authentication Logs", "Endpoint Detection"],
+    "detections": ["Impossible travel", "Risky sign-in", "Privileged account anomaly"],
+    "owner": "Identity Detection Engineering",
+    "validation_evidence": "Synthetic identity events produce expected alert fields and triage context."
+  },
+  {
+    "technique_id": "T1110.003",
+    "name": "Password Spraying",
+    "tactic": "Credential Access",
+    "status": "partial",
+    "severity": "high",
+    "data_sources": ["Authentication Logs"],
+    "detections": ["Distributed failed logon correlation"],
+    "owner": "Identity Detection Engineering",
+    "validation_evidence": "Alert fires for multi-account synthetic failure sequence; tuning for service accounts remains pending."
+  },
+  {
+    "technique_id": "T1059.001",
+    "name": "PowerShell",
+    "tactic": "Execution",
+    "status": "covered",
+    "severity": "high",
+    "data_sources": ["PowerShell Script Block Logging", "Endpoint Process Telemetry"],
+    "detections": ["Encoded command anomaly", "Suspicious child process correlation"],
+    "owner": "Endpoint Detection Engineering",
+    "validation_evidence": "Benign synthetic command fixtures generate the intended analytic evidence without executing offensive payloads."
+  },
+  {
+    "technique_id": "T1021.001",
+    "name": "Remote Desktop Protocol",
+    "tactic": "Lateral Movement",
+    "status": "partial",
+    "severity": "high",
+    "data_sources": ["Windows Security Logs", "Network Flow"],
+    "detections": ["Unusual source-to-destination RDP correlation"],
+    "owner": "Network Detection Engineering",
+    "validation_evidence": "Synthetic east-west flow evidence validates the analytic; privileged jump-host baselining remains incomplete."
+  },
+  {
+    "technique_id": "T1562.001",
+    "name": "Impair Defenses",
+    "tactic": "Defense Evasion",
+    "status": "gap",
+    "severity": "critical",
+    "data_sources": ["Endpoint Security Control Health", "Audit Logs"],
+    "detections": [],
+    "owner": "Endpoint Detection Engineering",
+    "validation_evidence": "",
+    "notes": "Validation must use safe configuration-state fixtures only; no security controls are disabled."
+  },
+  {
+    "technique_id": "T1190",
+    "name": "Exploit Public-Facing Application",
+    "tactic": "Initial Access",
+    "status": "partial",
+    "severity": "critical",
+    "data_sources": ["WAF Logs", "Reverse Proxy Logs", "Application Logs"],
+    "detections": ["Abnormal error-rate and request-pattern correlation"],
+    "owner": "Application Detection Engineering",
+    "validation_evidence": "Synthetic request metadata validates telemetry routing; application-specific analytic coverage remains incomplete."
+  }
+]
